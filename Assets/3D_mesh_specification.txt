@@ -1,0 +1,24 @@
+Mesh Name: Female Idol Character
+
+Mesh Type: Character
+
+Mesh Description: A high-quality, detailed 3D mesh of a female idol character suitable for use in Unity and various lighting/rendering techniques. The model should include detailed and realistic representations of the character's face, hair, and outfit.
+
+Mesh Features:
+
+* Detailed and realistic representation of the character's face
+* Detailed and realistic representation of the character's hair
+* Detailed and realistic representation of the character's outfit
+* Designed for animation
+* Compatible with Unity
+* Optimized for a variety of lighting and rendering techniques
+
+Mesh Requirements:
+
+* Exported as an .FBX file
+* Compatible with 3D modeling software such as Blender or Maya
+* High-poly model for detailed visuals, low-poly version for performance optimization in Unity (if applicable)
+* Texture maps included for face, hair, and outfit
+* Normal maps, specular maps, and other necessary texture maps for realistic rendering
+
+This guide includes the required features and specifications for creating a high-quality 3D model of a female idol character suitable for use in Unity. The model should be detailed and optimized for various lighting and rendering techniques. The final answer will consist of the complete content of this file as requested by the user.

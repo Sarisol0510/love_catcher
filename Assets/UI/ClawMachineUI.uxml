@@ -1,0 +1,311 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/ClawMachineStyle.uss?fileID=7433441132597879392&amp;guid=f49bda285d53df145943de288516cff7&amp;type=3#ClawMachineStyle" />
+    <ui:VisualElement name="ScreenRoot" class="screen-container">
+        <ui:VisualElement name="TopBar" class="top-bar">
+            <ui:VisualElement name="StatsPanel" class="glass-panel stats-panel" style="height: 175px;">
+                <ui:Label text="실시간 수량 현황" class="panel-title" />
+                <ui:VisualElement class="stat-row">
+                    <ui:Label text="남은 이성 아이디 개수" class="stat-label" />
+                    <ui:Label name="InstaCountText" text="0개" class="stat-value" />
+                </ui:VisualElement>
+                <ui:VisualElement class="stat-row">
+                    <ui:Label text="남은 실물 인형" class="stat-label" />
+                    <ui:Label name="DollCountText" text="0개" class="stat-value" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="CoinDisplayPanel" class="glass-panel" style="width: 220px; align-items: center; justify-content: center; border-color: rgb(0, 238, 255); border-width: 2px; border-radius: 16px; border-top-width: 6px; border-top-color: rgb(0, 238, 255); background-color: rgba(15, 12, 30, 0.75); height: 132px;">
+                <ui:Label text="🪙 남은 코인 🪙" style="font-size: 15px; color: rgba(255, 255, 255, 0.7); margin-bottom: 6px;" />
+                <ui:Label name="CoinCountText" text="0개" style="font-size: 28px; color: rgb(0, 238, 255); font-weight: bold; -unity-font-style: bold;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="PityPanel" class="glass-panel pity-panel">
+                <ui:Label text="도전 상태" class="pity-title" />
+                <ui:VisualElement class="stat-row">
+                    <ui:Label text="누적 시도 횟수" class="stat-label" />
+                    <ui:Label name="AttemptCountText" text="0회" class="stat-value" />
+                </ui:VisualElement>
+                <ui:VisualElement class="stat-row">
+                    <ui:Label text="남은 제한 시간" class="stat-label" />
+                    <ui:Label name="TimerText" text="60s" class="stat-value-highlight" style="color: rgb(255, 59, 48);" />
+                </ui:VisualElement>
+                <ui:VisualElement class="pity-progress-container">
+                    <ui:VisualElement name="PityProgressBar" class="pity-progress-bar" />
+                </ui:VisualElement>
+                <ui:Label name="PityStatusText" text="5회차에 MAX 파워 발동! (0/5)" class="pity-status-text" />
+                <ui:VisualElement name="PityMaxBanner" class="pity-max-banner" style="display: none;">
+                    <ui:Label text="🔥 MAX 파워 모드 발동! 🔥" class="pity-max-text" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="BottomBar" class="bottom-bar">
+            <ui:Button name="RetryButton" text="다시 시도하기 (R)" class="retry-button" style="display: none;" />
+            <ui:Button name="QuitButton" text="그만하기" class="quit-button" style="display: none;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="RegisterOverlay" class="overlay-screen" style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+            <ui:VisualElement name="RegisterCard" class="popup-card" style="margin-right: 40px;">
+                <ui:Label text="💘 사랑은 뽑기를 타고💘" class="popup-title" />
+                <ui:VisualElement style="flex-direction: row; justify-content: center; margin-bottom: 16px;">
+                    <ui:Label name="RegisterMaleCountText" text="남성 아이디: 0명" style="margin-right: 16px; color: rgb(0, 238, 255); font-weight: bold; font-size: 16px;" />
+                    <ui:Label name="RegisterFemaleCountText" text="여성 아이디: 0명" style="color: rgb(255, 0, 127); font-weight: bold; font-size: 16px;" />
+                </ui:VisualElement>
+                <ui:VisualElement class="form-field">
+                    <ui:Label text="이름" class="form-label" />
+                    <ui:TextField name="InputName" placeholder-text="이름을 입력하세요" class="form-input" />
+                </ui:VisualElement>
+                <ui:VisualElement class="form-field">
+                    <ui:Label text="인스타 아이디" class="form-label" />
+                    <ui:TextField name="InputInsta" placeholder-text="@instagram_id" class="form-input" />
+                    <ui:Label name="RegisterWarningText" style="color: rgb(255, 59, 48); font-size: 14px; margin-top: 4px; display: none;" />
+                </ui:VisualElement>
+                <ui:VisualElement class="form-field">
+                    <ui:Label text="한줄 소개 / 찾으시는 분" class="form-label" />
+                    <ui:TextField name="InputBio" placeholder-text="예:게임 좋아하는 분 ㅎ" class="form-input" />
+                </ui:VisualElement>
+                <ui:Label text="내 성별" class="form-label" style="align-self: flex-start; margin-left: 2px;" />
+                <ui:VisualElement class="gender-toggle-row">
+                    <ui:Button name="GenderBtnMale" text="남성 (Blue)" class="gender-button gender-button-male-selected" />
+                    <ui:Button name="GenderBtnFemale" text="여성 (Pink)" class="gender-button" />
+                </ui:VisualElement>
+                <ui:Button name="RegisterSubmitBtn" text="소개팅 매칭 시작하기" class="btn-primary" />
+            </ui:VisualElement>
+            <ui:VisualElement name="QRCodeCard" class="popup-card" style="width: 440px; align-items: center; justify-content: center;">
+                <ui:Label text="💰 코인 충전 및 결제 💰" class="popup-title" style="margin-bottom: 12px; color: rgb(0, 238, 255);" />
+                <ui:Label name="RegisterCoinCountText" text="보유 코인: 0개" class="fail-cute-msg" style="color: rgb(0, 238, 255); font-size: 20px; margin-bottom: 12px;" />
+                <ui:VisualElement style="width: 260px; height: 260px; background-image: url(&quot;project://database/Assets/%EA%B2%B0%EC%A0%9C%20QR.png?fileID=21300000&amp;guid=5d1bb88485080534eb5413b573daf014&amp;type=3#결제 QR&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement style="flex-direction: column; width: 100%; margin-top: 16px;">
+                    <ui:Label text="코인 요금제 선택" class="form-label" style="align-self: flex-start; font-weight: bold; margin-bottom: 8px; color: rgb(255, 215, 0);" />
+                    <ui:VisualElement style="flex-direction: row; justify-content: space-between; width: 100%; margin-bottom: 8px;">
+                        <ui:Button name="RegCoinPack1" text="1회 (500원)" class="gender-button" style="flex: 1; margin: 0 4px; font-size: 13px; height: 42px;" />
+                        <ui:Button name="RegCoinPack2" text="3회 (1500원)" class="gender-button" style="flex: 1; margin: 0 4px; font-size: 13px; height: 42px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-direction: row; justify-content: space-between; width: 100%; margin-bottom: 12px;">
+                        <ui:Button name="RegCoinPack3" text="5+1회 (2500원)" class="gender-button" style="flex: 1; margin: 0 4px; font-size: 13px; height: 42px;" />
+                        <ui:Button name="RegCoinPack4" text="10+3회 (5000원)" class="gender-button" style="flex: 1; margin: 0 4px; font-size: 13px; height: 42px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="입금 후 운영진에게 보여주세요." class="stat-value-highlight" style="margin-top: 10px; margin-bottom: 4px; -unity-text-align: middle-center; font-size: 16px; color: rgb(255, 215, 0);" />
+                <ui:Label text="🏦 토스뱅크 1002-5198-3143 권신혁 🏦" style="margin-bottom: 8px; -unity-text-align: middle-center; font-size: 14px; color: rgb(0, 238, 255); font-weight: bold;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="SuccessOverlay" class="overlay-screen" style="display: none; flex-direction: row; justify-content: center; align-items: center;">
+            <ui:VisualElement name="SuccessCard" class="popup-card" style="margin-right: 40px;">
+                <ui:Label text="🎉 뽑기 성공! 🎉" class="popup-title" style="color: rgb(255, 215, 0);" />
+                <ui:Label name="SuccessSubTitle" text="축하합니다! 당신과 어울리는 이성의 인스타 카드입니다." class="form-label" style="margin-bottom: 16px; -unity-text-align: middle-center;" />
+                <ui:VisualElement class="profile-card">
+                    <ui:Label name="MatchedName" text="홍길동 (남)" class="form-label" style="font-size: 16px; color: rgb(0, 238, 255);" />
+                    <ui:Label name="MatchedInsta" text="@gildong_love" class="profile-insta" />
+                    <ui:Label name="MatchedBio" text="“여행과 카페 투어 좋아해요! 편하게 연락주세요!”" class="profile-bio" />
+                </ui:VisualElement>
+                <ui:Label name="DollPickupNotice" text="🎁 현장에서 실물 인형도 픽업해가세요! 🎁" class="stat-value-highlight" style="margin-bottom: 24px; font-size: 16px;" />
+                <ui:VisualElement class="gender-toggle-row" style="width: 100%; margin-top: 8px; margin-bottom: 0;">
+                    <ui:Button name="SuccessRetryBtn" text="또 뽑기 (결제 필요)" class="btn-primary" style="flex: 1; margin-right: 8px; margin-top: 16px;" />
+                    <ui:Button name="SuccessExitBtn" text="그만두기" class="btn-secondary" style="flex: 1; margin-left: 8px; margin-top: 16px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="RetryQRCodeCard" class="popup-card" style="width: 400px; align-items: center; justify-content: center;">
+                <ui:Label text="💰 또 뽑기 (500원) 💰" class="popup-title" style="margin-bottom: 16px; color: rgb(0, 238, 255);" />
+                <ui:VisualElement style="width: 300px; height: 300px; background-image: url(&quot;project://database/Assets/%EA%B2%B0%EC%A0%9C%20QR.png?fileID=21300000&amp;guid=5d1bb88485080534eb5413b573daf014&amp;type=3#결제 QR&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Label text="또 뽑기를 원하시면 결제 후 눌러주세요!" class="form-label" style="margin-top: 16px; -unity-text-align: middle-center; font-size: 16px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="FailOverlay" class="overlay-screen" style="display: none;">
+            <ui:VisualElement name="FailCard" class="popup-card fail-card">
+                <ui:Label name="FailEmoji" text="🥺" class="fail-emoji" />
+                <ui:Label text="이번엔 빈손이에요..." class="popup-title" style="color: rgb(255, 140, 0); font-size: 24px; margin-bottom: 8px;" />
+                <ui:Label name="FailCuteMsg" text="인형이 기다리고 있어요 ゜゜" class="fail-cute-msg" />
+                <ui:VisualElement style="width: 100%; height: 1px; background-color: rgba(255, 140, 0, 0.3); margin-top: 20px; margin-bottom: 20px;" />
+                <ui:Button name="FailRetryAgainBtn" text="🎯 한 번만 더! (500원)" class="btn-primary fail-retry-again-btn" />
+                <ui:Button name="FailCloseBtn" text="다음 참가자 등록하기" class="btn-secondary" style="width: 100%; height: 44px; font-size: 15px; margin-top: 10px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="FailRetryOverlay" class="overlay-screen" style="display: none;">
+            <ui:VisualElement name="FailRetryCard" class="popup-card" style="width: 460px; align-items: center; justify-content: center;">
+                <ui:Label text="💰 코인 충전 및 결제 💰" class="popup-title" style="margin-bottom: 12px; color: rgb(0, 238, 255);" />
+                <ui:Label name="PopupCoinCountText" text="보유 코인: 0개" class="fail-cute-msg" style="color: rgb(0, 238, 255); font-size: 20px; margin-bottom: 12px;" />
+                <ui:VisualElement style="width: 260px; height: 260px; background-image: url(&quot;project://database/Assets/%EA%B2%B0%EC%A0%9C%20QR.png?fileID=21300000&amp;guid=5d1bb88485080534eb5413b573daf014&amp;type=3#결제 QR&quot;); -unity-background-scale-mode: scale-to-fit;" />
+                <ui:VisualElement style="flex-direction: column; width: 100%; margin-top: 16px;">
+                    <ui:Label text="코인 요금제 선택" class="form-label" style="align-self: flex-start; font-weight: bold; margin-bottom: 8px; color: rgb(255, 215, 0);" />
+                    <ui:VisualElement style="flex-direction: row; justify-content: space-between; width: 100%; margin-bottom: 8px;">
+                        <ui:Button name="BtnCoinPack1" text="1회 (500원)" class="gender-button" style="flex: 1; margin: 0 4px; font-size: 13px; height: 42px;" />
+                        <ui:Button name="BtnCoinPack2" text="3회 (1500원)" class="gender-button" style="flex: 1; margin: 0 4px; font-size: 13px; height: 42px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-direction: row; justify-content: space-between; width: 100%; margin-bottom: 12px;">
+                        <ui:Button name="BtnCoinPack3" text="5+1회 (2500원)" class="gender-button" style="flex: 1; margin: 0 4px; font-size: 13px; height: 42px;" />
+                        <ui:Button name="BtnCoinPack4" text="10+3회 (5000원)" class="gender-button" style="flex: 1; margin: 0 4px; font-size: 13px; height: 42px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label text="입금 후 운영진에게 보여주세요." class="stat-value-highlight" style="margin-top: 10px; margin-bottom: 4px; -unity-text-align: middle-center; font-size: 16px; color: rgb(255, 215, 0);" />
+                <ui:Label text="🏦 토스뱅크 1002-5198-3143 권신혁 🏦" style="margin-bottom: 8px; -unity-text-align: middle-center; font-size: 14px; color: rgb(0, 238, 255); font-weight: bold;" />
+                <ui:Button name="BtnCoinStart" text="🎮 도전 시작하기 (1코인 사용)" class="btn-primary" style="margin-top: 8px; width: 100%; height: 50px; font-size: 18px; display: none;" />
+                <ui:Button name="FailRetryCloseBtn" text="뒤로 가기" class="btn-secondary" style="margin-top: 8px; width: 100%; height: 46px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="QuitConfirmOverlay" class="overlay-screen" style="display: none;">
+            <ui:VisualElement name="QuitConfirmCard" class="popup-card popup-card-female" style="width: 440px; border-color: rgb(255, 59, 48); border-width: 3px;">
+                <ui:Label name="QuitConfirmTitle" text="진짜 그만둘래요? 🥺" class="popup-title" style="color: rgb(255, 59, 48); font-size: 22px; -unity-text-align: middle-center; margin-bottom: 24px;" />
+                <ui:Label text="잠깐만요! 이렇게 매칭 확률이 높은데 그냥 가신다구요?" class="form-label" style="-unity-text-align: middle-center; margin-bottom: 32px; font-size: 14px;" />
+                <ui:VisualElement class="gender-toggle-row" style="width: 100%; margin-top: 8px; margin-bottom: 0;">
+                    <ui:Button name="QuitConfirmNoBtn" text="계속 뽑을래요! 😍" class="btn-primary btn-primary-female" style="flex: 1.3; margin-right: 8px; margin-top: 0; height: 46px; font-size: 16px;" />
+                    <ui:Button name="QuitConfirmYesBtn" text="그만두기" class="btn-secondary" style="flex: 0.7; margin-left: 8px; margin-top: 0; height: 46px; font-size: 16px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="DevModeOverlay" class="overlay-screen" style="display: none;">
+            <ui:VisualElement name="DevModeCard" class="popup-card" style="width: 550px; max-height: 90%; border-color: rgb(255, 215, 0); padding: 24px;">
+                <ui:Label text="🛠️ 개발자 모드 🛠️" class="popup-title" style="color: rgb(255, 215, 0); margin-bottom: 16px; -unity-text-align: middle-center; width: 100%;" />
+                <ui:ScrollView style="width: 100%; flex: 1; padding-right: 14px; margin-bottom: 16px;">
+                    <ui:VisualElement class="form-field">
+                        <ui:Label text="Firebase 설정" class="form-label" style="color: rgb(255, 215, 0); font-size: 16px; font-weight: bold;" />
+                        <ui:Button name="DevOpenDbViewBtn" text="데이터베이스 뷰어 열기 (조회/개별수정/삭제)" class="btn-primary" style="height: 40px; margin-top: 4px; font-size: 14px; background-color: rgb(0, 128, 255);" />
+                        <ui:Button name="DevResetDbBtn" text="데이터베이스 유저 전원 상태 초기화 (isPicked = false)" class="btn-secondary" style="height: 40px; margin-top: 8px; font-size: 14px; border-color: rgb(255, 59, 48);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="form-field" style="margin-top: 16px; background-color: rgba(255, 215, 0, 0.05); padding: 12px; border-radius: 12px; border-width: 1px; border-color: rgba(255, 215, 0, 0.2);">
+                        <ui:Label text="📈 행사 실시간 통계 📈" class="form-label" style="color: rgb(255, 215, 0); font-size: 16px; font-weight: bold; margin-bottom: 8px;" />
+                        <ui:Label name="DevStatRegistrations" text="등록된 총 인스타 ID 수: 0명" class="form-label" style="color: rgb(0, 238, 255); margin-bottom: 4px; font-size: 13px;" />
+                        <ui:Label name="DevStatPlays" text="총 플레이 횟수: 0회" class="form-label" style="color: rgb(255, 0, 128); margin-bottom: 4px; font-size: 13px;" />
+                        <ui:Label name="DevStatSuccesses" text="총 성공(뽑기) 횟수: 0회" class="form-label" style="color: rgb(50, 255, 100); margin-bottom: 8px; font-size: 13px;" />
+                        <ui:Label name="DevStatRevenue" text="총 누적 수입: 0원" class="form-label" style="color: rgb(255, 215, 0); font-size: 15px; font-weight: bold; margin-bottom: 0;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="form-field" style="margin-top: 16px;">
+                        <ui:Label text="물리 엔진 설정" class="form-label" style="color: rgb(0, 238, 255); font-size: 16px; font-weight: bold;" />
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <ui:Label name="DevGripForceLabel" text="집게 힘 (악력): 15" class="form-label" style="margin-bottom: 0;" />
+                            <ui:TextField name="DevGripForceInput" value="15" class="input-field" style="width: 85px; margin-bottom: 0;" />
+                        </ui:VisualElement>
+                        <ui:Slider name="DevGripForceSlider" low-value="10" high-value="150" value="15" style="margin-bottom: 8px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="form-field" style="margin-top: 16px;">
+                        <ui:Label text="보상 확률 설정 (%)" class="form-label" style="color: rgb(255, 0, 128); font-size: 16px; font-weight: bold;" />
+                        
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <ui:Label name="DevProbDollInstaLabel" text="[인형 + 인스타] 확률: 30%" class="form-label" style="margin-bottom: 0;" />
+                            <ui:TextField name="DevProbDollInstaInput" value="30" class="input-field" style="width: 85px; margin-bottom: 0;" />
+                        </ui:VisualElement>
+                        <ui:Slider name="DevProbDollInstaSlider" low-value="0" high-value="100" value="30" style="margin-bottom: 8px;" />
+                        
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <ui:Label name="DevProbIdOnlyLabel" text="[아이디만] 확률: 40%" class="form-label" style="margin-bottom: 0;" />
+                            <ui:TextField name="DevProbIdOnlyInput" value="40" class="input-field" style="width: 85px; margin-bottom: 0;" />
+                        </ui:VisualElement>
+                        <ui:Slider name="DevProbIdOnlySlider" low-value="0" high-value="100" value="40" style="margin-bottom: 8px;" />
+                        
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <ui:Label name="DevProbDollOnlyLabel" text="[실물 인형만] 확률: 10%" class="form-label" style="margin-bottom: 0;" />
+                            <ui:TextField name="DevProbDollOnlyInput" value="10" class="input-field" style="width: 85px; margin-bottom: 0;" />
+                        </ui:VisualElement>
+                        <ui:Slider name="DevProbDollOnlySlider" low-value="0" high-value="100" value="10" style="margin-bottom: 8px;" />
+                        
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                            <ui:Label name="DevProbCandyLabel" text="[꽝(사탕)] 확률: 30%" class="form-label" style="margin-bottom: 0;" />
+                            <ui:TextField name="DevProbCandyInput" value="30" class="input-field" style="width: 85px; margin-bottom: 0;" />
+                        </ui:VisualElement>
+                        <ui:Slider name="DevProbCandySlider" low-value="0" high-value="100" value="30" style="margin-bottom: 8px;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="form-field" style="margin-top: 16px;">
+                        <ui:Label text="게임 상태 및 통계 설정" class="form-label" style="color: rgb(150, 255, 100); font-size: 16px; font-weight: bold;" />
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-top: 4px;">
+                            <ui:Label text="실물 인형 개수:" class="form-label" style="margin-bottom: 0;" />
+                            <ui:VisualElement style="flex-direction: row; align-items: center;">
+                                <ui:TextField name="DevTotalDollsInput" value="100" class="input-field" style="width: 80px; margin-right: 8px;" />
+                                <ui:Button name="DevSaveDollsBtn" text="저장" class="btn-primary" style="width: 60px; height: 32px; font-size: 12px; margin-bottom: 8px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-top: 8px;">
+                            <ui:Label text="현재 코인 개수:" class="form-label" style="margin-bottom: 0;" />
+                            <ui:VisualElement style="flex-direction: row; align-items: center;">
+                                <ui:TextField name="DevCoinsInput" value="0" class="input-field" style="width: 80px; margin-right: 8px;" />
+                                <ui:Button name="DevSaveCoinsBtn" text="저장" class="btn-primary" style="width: 60px; height: 32px; font-size: 12px; margin-bottom: 8px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-top: 8px;">
+                            <ui:Label text="총 누적 수입:" class="form-label" style="margin-bottom: 0;" />
+                            <ui:VisualElement style="flex-direction: row; align-items: center;">
+                                <ui:TextField name="DevTotalRevenueInput" value="0" class="input-field" style="width: 80px; margin-right: 8px;" />
+                                <ui:Button name="DevSaveRevenueBtn" text="저장" class="btn-primary" style="width: 60px; height: 32px; font-size: 12px; margin-bottom: 8px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-top: 8px;">
+                            <ui:Label text="등록된 총 ID 수:" class="form-label" style="margin-bottom: 0;" />
+                            <ui:VisualElement style="flex-direction: row; align-items: center;">
+                                <ui:TextField name="DevTotalRegistrationsInput" value="0" class="input-field" style="width: 80px; margin-right: 8px;" />
+                                <ui:Button name="DevSaveRegistrationsBtn" text="저장" class="btn-primary" style="width: 60px; height: 32px; font-size: 12px; margin-bottom: 8px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-top: 8px;">
+                            <ui:Label text="총 플레이 횟수:" class="form-label" style="margin-bottom: 0;" />
+                            <ui:VisualElement style="flex-direction: row; align-items: center;">
+                                <ui:TextField name="DevTotalPlaysInput" value="0" class="input-field" style="width: 80px; margin-right: 8px;" />
+                                <ui:Button name="DevSavePlaysBtn" text="저장" class="btn-primary" style="width: 60px; height: 32px; font-size: 12px; margin-bottom: 8px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: center; margin-top: 8px;">
+                            <ui:Label text="총 성공 횟수:" class="form-label" style="margin-bottom: 0;" />
+                            <ui:VisualElement style="flex-direction: row; align-items: center;">
+                                <ui:TextField name="DevTotalSuccessesInput" value="0" class="input-field" style="width: 80px; margin-right: 8px;" />
+                                <ui:Button name="DevSaveSuccessesBtn" text="저장" class="btn-primary" style="width: 60px; height: 32px; font-size: 12px; margin-bottom: 8px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:Button name="DevResetStatsBtn" text="📈 통계 데이터 전체 초기화 (0으로 리셋) 📈" class="btn-secondary" style="height: 36px; margin-top: 12px; font-size: 13px; border-color: rgb(255, 59, 48); font-weight: bold; color: rgb(255, 59, 48);" />
+                    </ui:VisualElement>
+                </ui:ScrollView>
+                <ui:Button name="DevCloseBtn" text="닫기 및 저장" class="btn-primary" style="margin-top: 0; width: 100%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="DevDbOverlay" class="overlay-screen" style="display: none;">
+            <ui:VisualElement name="DevDbCard" class="popup-card" style="width: 900px; height: 88%; border-color: rgb(0, 238, 255);">
+                <ui:Label text="🗄️ 데이터베이스 뷰어 🗄️" class="popup-title" style="color: rgb(0, 238, 255); margin-bottom: 12px;" />
+                <ui:VisualElement name="DevAddForm" style="flex-direction: column; background-color: rgba(0, 238, 255, 0.07); border-color: rgba(0, 238, 255, 0.4); border-width: 1px; border-radius: 10px; padding: 12px; margin-bottom: 12px;">
+                    <ui:Label text="➕ 아이디 직접 등록" style="color: rgb(0, 238, 255); font-size: 15px; font-weight: bold; margin-bottom: 8px;" />
+                    <ui:VisualElement style="flex-direction: row; align-items: center; flex-wrap: wrap;">
+                        <ui:VisualElement style="flex-direction: column; margin-right: 10px;">
+                            <ui:Label text="이름" style="color: rgba(255, 255, 255, 0.7); font-size: 11px; margin-bottom: 2px;" />
+                            <ui:TextField name="DevAddName" placeholder-text="홍길동" class="form-input" style="width: 90px; height: 34px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: column; margin-right: 10px;">
+                            <ui:Label text="인스타 아이디" style="color: rgba(255, 255, 255, 0.7); font-size: 11px; margin-bottom: 2px;" />
+                            <ui:TextField name="DevAddInsta" placeholder-text="@instagram_id" class="form-input" style="width: 150px; height: 34px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: column; margin-right: 10px;">
+                            <ui:Label text="성별" style="color: rgba(255, 255, 255, 0.7); font-size: 11px; margin-bottom: 2px;" />
+                            <ui:VisualElement style="flex-direction: row; height: 34px; align-items: center;">
+                                <ui:Button name="DevAddGenderMaleBtn" text="남" style="width: 40px; height: 32px; font-size: 13px; border-radius: 6px; margin-right: 4px; background-color: rgb(0, 140, 255); border-width: 2px; border-color: rgb(0, 238, 255);" />
+                                <ui:Button name="DevAddGenderFemaleBtn" text="여" style="width: 40px; height: 32px; font-size: 13px; border-radius: 6px; background-color: rgba(80, 80, 80, 0.5); border-width: 2px; border-color: rgba(255, 255, 255, 0.2);" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: column; margin-right: 10px;">
+                            <ui:Label text="한줄소개" style="color: rgba(255, 255, 255, 0.7); font-size: 11px; margin-bottom: 2px;" />
+                            <ui:TextField name="DevAddBio" placeholder-text="(선택)" class="form-input" style="width: 200px; height: 34px;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: column; justify-content: flex-end; height: 54px;">
+                            <ui:Button name="DevAddSubmitBtn" text="등록" class="btn-primary" style="width: 70px; height: 34px; font-size: 14px; font-weight: bold;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:Label name="DevAddStatusLabel" style="color: rgb(0, 238, 255); font-size: 13px; margin-top: 6px; display: none;" />
+                </ui:VisualElement>
+                <ui:VisualElement style="flex-direction: row; justify-content: space-between; margin-bottom: 10px;">
+                    <ui:Button name="DevDbRefreshBtn" text="새로고침" class="btn-primary" style="width: 120px; height: 36px; font-size: 14px;" />
+                    <ui:Button name="DevDbCloseBtn" text="뒤로 가기" class="btn-secondary" style="width: 120px; height: 36px; font-size: 14px;" />
+                </ui:VisualElement>
+                <ui:ScrollView name="DevDbScrollView" style="flex: 1; border-color: rgba(255, 255, 255, 0.2); border-width: 1px; border-radius: 8px; padding: 8px; background-color: rgba(0, 0, 0, 0.5);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="RewardGuidePanel" class="glass-panel" style="position: absolute; left: 24px; bottom: 24px; width: 320px; border-left-width: 6px; border-left-color: rgb(255, 0, 128); padding: 12px 16px;">
+            <ui:Label text="🎁 획득 가능한 보상 🎁" style="font-size: 15px; color: rgb(255, 0, 128); margin-bottom: 8px; font-weight: bold;" />
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 4px;">
+                <ui:Label text="•" style="color: rgb(255, 215, 0); margin-right: 6px; font-size: 14px;" />
+                <ui:Label text="실물 인형 + 인스타 아이디" style="font-size: 13px; color: rgba(255, 255, 255, 0.9);" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 4px;">
+                <ui:Label text="•" style="color: rgb(50, 255, 100); margin-right: 6px; font-size: 14px;" />
+                <ui:Label text="실물 인형만" style="font-size: 13px; color: rgba(255, 255, 255, 0.9);" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; align-items: center; margin-bottom: 4px;">
+                <ui:Label text="•" style="color: rgb(0, 238, 255); margin-right: 6px; font-size: 14px;" />
+                <ui:Label text="이성 인스타 아이디" style="font-size: 13px; color: rgba(255, 255, 255, 0.9);" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; align-items: center;">
+                <ui:Label text="•" style="color: rgb(255, 140, 0); margin-right: 6px; font-size: 14px;" />
+                <ui:Label text="달콤한 사탕" style="font-size: 13px; color: rgba(255, 255, 255, 0.9);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

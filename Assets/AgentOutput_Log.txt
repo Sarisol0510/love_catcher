@@ -1,0 +1,7 @@
+## 3D ASSETS (MODEL_PROMPT lines)
+
+MODEL_PROMPT: feminine_doll_1.obj a beautiful young woman with a hot body, wearing a red dress, high heels, and a big smile
+MODEL_PROMPT: feminine_doll_2.obj a stunning female figure with a slender body, adorned with a golden necklace, earrings, and a crown-shaped hat
+MODEL_PROMPT: feminine_doll_3.obj a curvy and confident woman with a bold hairstyle, matching sunglasses, and a chic outfit
+MODEL_PROMPT: feminine_doll_4.obj a sweet and innocent-looking girl with a pink dress, a bow in her hair, and a delicate necklace
+MODEL_PROMPT: feminine_doll_5.obj a strong and athletic female character with a black sports outfit, a bold tattoo, and a confident expression

@@ -1,0 +1,477 @@
+/* ClawMachineStyle.uss - Premium Neon-Glassmorphism Style Sheet for Love Catcher */
+
+:root {
+    --color-bg-glass: rgba(15, 12, 30, 0.75);
+    --color-border-neon: rgba(0, 238, 255, 0.4);
+    --color-border-neon-pink: rgba(255, 0, 128, 0.4);
+    --color-neon-cyan: #00eeff;
+    --color-neon-pink: #ff0080;
+    --color-text-white: #ffffff;
+    --color-text-muted: #a0a0c0;
+    --color-gold: #ffd700;
+    
+    font-size: 16px;
+    -unity-font-style: bold;
+    color: var(--color-text-white);
+}
+
+/* Screen Wrapper */
+.screen-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 3, 10, 0.2);
+    justify-content: space-between;
+    padding: 24px;
+}
+
+/* Glassmorphism Panel Base */
+.glass-panel {
+    background-color: var(--color-bg-glass);
+    border-width: 2px;
+    border-color: var(--color-border-neon);
+    border-radius: 16px;
+    padding: 16px;
+}
+
+/* Top Panel Layout */
+.top-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Left panel - Stats */
+.stats-panel {
+    width: 320px;
+    border-left-width: 6px;
+    border-left-color: var(--color-neon-cyan);
+}
+
+.panel-title {
+    font-size: 20px;
+    color: var(--color-neon-cyan);
+    margin-bottom: 12px;
+    -unity-text-align: middle-left;
+}
+
+.stat-row {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--color-text-muted);
+}
+
+.stat-value {
+    font-size: 16px;
+    color: var(--color-text-white);
+}
+
+.stat-value-highlight {
+    font-size: 18px;
+    color: var(--color-gold);
+}
+
+/* Right panel - Pity & Attempts */
+.pity-panel {
+    width: 320px;
+    border-right-width: 6px;
+    border-right-color: var(--color-neon-pink);
+}
+
+.pity-title {
+    font-size: 20px;
+    color: var(--color-neon-pink);
+    margin-bottom: 12px;
+    -unity-text-align: middle-right;
+}
+
+/* Custom Progress Bar for Pity */
+.pity-progress-container {
+    width: 100%;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.pity-progress-bar {
+    width: 0%; /* Dynamic */
+    height: 100%;
+    background-color: var(--color-neon-pink);
+    border-radius: 10px;
+}
+
+.pity-status-text {
+    font-size: 12px;
+    color: var(--color-text-muted);
+    -unity-text-align: middle-right;
+}
+
+.pity-max-banner {
+    background-color: rgba(255, 0, 128, 0.2);
+    border-width: 1px;
+    border-color: var(--color-neon-pink);
+    border-radius: 8px;
+    padding: 6px;
+    margin-top: 8px;
+    align-items: center;
+}
+
+.pity-max-text {
+    color: #ff3b30;
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+
+/* Bottom Bar and Action Buttons */
+.bottom-bar {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+}
+
+.retry-button {
+    background-color: var(--color-neon-pink);
+    border-width: 0;
+    border-radius: 12px;
+    padding: 12px 28px;
+    font-size: 18px;
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+.retry-button:hover {
+    background-color: #ff3399;
+}
+
+.retry-button:active {
+    background-color: #cc0066;
+}
+
+.quit-button {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-width: 1.5px;
+    border-color: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 10px 24px;
+    font-size: 16px;
+    color: var(--color-text-muted);
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    margin-top: 8px;
+}
+
+.quit-button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: white;
+}
+
+.quit-button:active {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Premium Arcade Navigation Focus & Hover State for ALL select-eligible buttons */
+.arcade-focus,
+.btn-primary:hover,
+.btn-secondary:hover,
+.gender-button:hover,
+.retry-button:hover,
+.quit-button:hover,
+.db-btn:hover {
+    border-width: 3px !important;
+    border-color: #ffd700 !important; /* Golden Neon glow */
+    scale: 1.06 !important; /* Satisfying micro-scale highlight */
+    transition: scale 0.12s ease-out, border-color 0.12s ease-out;
+    -unity-font-style: bold;
+}
+
+/* Full-Screen Overlay Screens (Popup Windows) */
+.overlay-screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(5, 2, 10, 0.85);
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.popup-card {
+    width: 500px;
+    background-color: var(--color-bg-glass);
+    border-width: 3px;
+    border-color: var(--color-neon-cyan);
+    border-radius: 24px;
+    padding: 32px;
+    align-items: center;
+}
+
+.popup-card-female {
+    border-color: var(--color-neon-pink);
+}
+
+.popup-title {
+    font-size: 28px;
+    color: var(--color-neon-cyan);
+    margin-bottom: 24px;
+}
+
+.popup-title-female {
+    color: var(--color-neon-pink);
+}
+
+/* Registration Form Inputs */
+.form-field {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.form-label {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    margin-bottom: 6px;
+}
+
+.form-input {
+    background-color: rgba(0, 0, 0, 0.45); /* 더욱 깊고 어두운 검정 투명 톤으로 변경 */
+    border-width: 1.5px;
+    border-color: rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+/* Unity UI Toolkit 내부 입력 엘리먼트 강제 타겟팅 */
+.form-input .unity-text-field__input {
+    background-color: transparent; /* 부모 배경색 투과 */
+    color: #ffffff; /* 강렬하고 선명한 흰색 글씨 */
+    padding: 0;
+    margin: 0;
+}
+
+.form-input:focus {
+    border-color: var(--color-neon-cyan);
+    background-color: rgba(0, 0, 0, 0.65); /* 포커스 시 좀 더 선명하게 대비 */
+}
+
+/* Gender Selection Button Toggle */
+.gender-toggle-row {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.gender-button {
+    flex: 1;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-width: 1.5px;
+    border-color: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    font-size: 16px;
+    color: var(--color-text-muted);
+    justify-content: center;
+    align-items: center;
+    margin: 0 8px;
+}
+
+.gender-button-male-selected {
+    background-color: rgba(0, 238, 255, 0.15);
+    border-color: var(--color-neon-cyan);
+    color: var(--color-neon-cyan);
+}
+
+.gender-button-female-selected {
+    background-color: rgba(255, 0, 128, 0.15);
+    border-color: var(--color-neon-pink);
+    color: var(--color-neon-pink);
+}
+
+/* Primary Form Action Button */
+.btn-primary {
+    width: 100%;
+    height: 50px;
+    background-color: var(--color-neon-cyan);
+    border-width: 0;
+    border-radius: 12px;
+    font-size: 18px;
+    color: #05030a;
+    -unity-font-style: bold;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.btn-primary:hover {
+    background-color: #55f5ff;
+}
+
+.btn-primary-female {
+    background-color: var(--color-neon-pink);
+    color: white;
+}
+
+.btn-primary-female:hover {
+    background-color: #ff3399;
+}
+
+/* Success Profile Card Styling */
+.profile-card {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+    align-items: center;
+}
+
+.profile-insta {
+    font-size: 24px;
+    color: var(--color-gold);
+    margin-bottom: 12px;
+    -unity-font-style: bold;
+}
+
+.profile-bio {
+    font-size: 16px;
+    color: var(--color-text-white);
+    -unity-text-align: middle-center;
+    -unity-font-style: italic;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+/* Secondary / Neutral Action Button for Quit confirmation */
+.btn-secondary {
+    flex: 1;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-width: 1.5px;
+    border-color: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    font-size: 18px;
+    color: var(--color-text-muted);
+    -unity-font-style: bold;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: var(--color-text-white);
+}
+
+.btn-secondary:active {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* =========================================================================
+   DB Viewer List Item Styles
+   ========================================================================= */
+
+.db-row {
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.db-input {
+    font-size: 14px;
+    margin-right: 6px;
+    flex: 1;
+}
+
+.db-input .unity-text-field__input {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.3);
+    padding: 6px;
+}
+
+.db-toggle {
+    margin-right: 8px;
+}
+
+.db-btn {
+    height: 28px;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    margin-left: 4px;
+}
+
+
+/* =========================================================================
+   Fail Overlay - Cute Encouraging Popup
+   ========================================================================= */
+
+.fail-card {
+    width: 520px;
+    border-color: rgb(255, 140, 0);
+    border-width: 3px;
+    background-color: rgba(20, 10, 5, 0.95);
+}
+
+.fail-emoji {
+    font-size: 80px;
+    -unity-text-align: middle-center;
+    margin-bottom: 4px;
+    width: 100%;
+}
+
+.fail-cute-msg {
+    font-size: 22px;
+    color: rgb(255, 210, 100);
+    -unity-text-align: middle-center;
+    margin-bottom: 10px;
+    width: 100%;
+    -unity-font-style: bold;
+}
+
+.fail-candy-label {
+    font-size: 15px;
+    color: rgba(255, 200, 120, 0.75);
+    -unity-text-align: middle-center;
+    width: 100%;
+}
+
+.fail-retry-again-btn {
+    width: 100%;
+    height: 60px;
+    font-size: 22px;
+    background-color: rgb(255, 140, 0);
+    color: #05030a;
+    border-radius: 14px;
+    border-width: 0;
+    -unity-font-style: bold;
+    margin-top: 0;
+}
+
+.fail-retry-again-btn:hover {
+    background-color: rgb(255, 170, 50);
+}
+
+.fail-retry-again-btn:active {
+    background-color: rgb(220, 110, 0);
+}

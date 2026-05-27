@@ -171,7 +171,7 @@ namespace ClawMachine.Mechanics
         /// <summary>
         /// 참가자 등록이 완료되면 게임 세션을 시작합니다.
         /// </summary>
-        public void StartGameSession(string name, string insta, string bio, string gender)
+        public void StartGameSession(string name, string insta, string bio, string gender, bool isDuplicateRegistration = false)
         {
             sessionAttempts = 1; // 1회차부터 표시하도록 수정
             timeRemaining = sessionTimeLimit;
@@ -195,7 +195,7 @@ namespace ClawMachine.Mechanics
             }
 
             // Firebase 실시간 등록 연동 (비동기)
-            if (firebaseService != null && gender != "남")
+            if (firebaseService != null && !isDuplicateRegistration)
             {
                 StartCoroutine(firebaseService.RegisterPlayer(name, insta, bio, gender, sessionAttempts, (success) => {
                     if (success)
@@ -204,6 +204,10 @@ namespace ClawMachine.Mechanics
                         firebaseService.IncrementRegistrationCount();
                     }
                 }));
+            }
+            else if (isDuplicateRegistration)
+            {
+                Debug.Log("[Firebase] 중복 등록이므로 DB에 저장하지 않습니다.");
             }
             
             UpdateStatsUI();

@@ -179,7 +179,7 @@ namespace ClawMachine.UI
         public AudioClip popupFailSound;
 
         // Events
-        public event Action<string, string, string, string> OnPlayerRegistered;
+        public event Action<string, string, string, string, bool> OnPlayerRegistered;
         public event Action OnRetryClicked;
         public event Action OnNextPlayerReady;
         public event Action OnContinueSession;
@@ -366,25 +366,7 @@ namespace ClawMachine.UI
             
             if (registerSubmitBtn != null && registerSubmitBtn.parent != null)
             {
-                mainNoInstaToggle = new Toggle("인스타 없이 진행 모드 (인형, 사탕만 뽑기)");
-                mainNoInstaToggle.style.color = new Color(1f, 1f, 1f);
-                mainNoInstaToggle.style.marginBottom = 15;
-                mainNoInstaToggle.style.marginTop = 10;
-                mainNoInstaToggle.style.alignSelf = Align.Center; // to center it
-                mainNoInstaToggle.style.fontSize = 16;
-                
-                if (ClawMachine.Mechanics.GameFlowManager.Instance != null) {
-                    mainNoInstaToggle.value = ClawMachine.Mechanics.GameFlowManager.Instance.noInstaMode;
-                }
-                mainNoInstaToggle.RegisterValueChangedCallback(evt => {
-                    if (ClawMachine.Mechanics.GameFlowManager.Instance != null) {
-                        ClawMachine.Mechanics.GameFlowManager.Instance.noInstaMode = evt.newValue;
-                    }
-                });
-                
-                var parent = registerSubmitBtn.parent;
-                var indexOfBtn = parent.IndexOf(registerSubmitBtn);
-                parent.Insert(indexOfBtn, mainNoInstaToggle);
+                // The mainNoInstaToggle has been moved to the developer mode screen.
             }
             
             if (retryButton != null)
@@ -545,6 +527,19 @@ namespace ClawMachine.UI
                     }
                 });
                 toggleContainer.Add(devUseGenderToggle);
+
+                mainNoInstaToggle = new Toggle("인스타 등록 없이 진행 모드");
+                mainNoInstaToggle.style.color = new Color(1f, 1f, 1f);
+                mainNoInstaToggle.style.marginLeft = 20;
+                if (ClawMachine.Mechanics.GameFlowManager.Instance != null) {
+                    mainNoInstaToggle.value = ClawMachine.Mechanics.GameFlowManager.Instance.noInstaMode;
+                }
+                mainNoInstaToggle.RegisterValueChangedCallback(evt => {
+                    if (ClawMachine.Mechanics.GameFlowManager.Instance != null) {
+                        ClawMachine.Mechanics.GameFlowManager.Instance.noInstaMode = evt.newValue;
+                    }
+                });
+                toggleContainer.Add(mainNoInstaToggle);
 
                 var probModeContainer = new VisualElement();
                 probModeContainer.style.flexDirection = FlexDirection.Row;
@@ -914,6 +909,8 @@ namespace ClawMachine.UI
             }
         }
 
+        private bool isDuplicateRegistration = false;
+
         private void SubmitRegistration()
         {
             // 포커스 해제하여 커서 인덱스 예외(ArgumentOutOfRangeException) 방지
@@ -921,6 +918,7 @@ namespace ClawMachine.UI
             inputInsta?.Blur();
             inputBio?.Blur();
 
+            isDuplicateRegistration = false;
             registeredName = inputName.value;
             registeredInsta = inputInsta.value;
             registeredBio = inputBio.value;
@@ -944,7 +942,20 @@ namespace ClawMachine.UI
 
             if (registerWarningText != null) registerWarningText.style.display = DisplayStyle.None;
 
-            CheckCoinAndProceed();
+            if (registeredGender == "남" && ClawMachine.Mechanics.FirebaseRESTService.Instance != null)
+            {
+                if (registerSubmitBtn != null) registerSubmitBtn.SetEnabled(false);
+                
+                StartCoroutine(ClawMachine.Mechanics.FirebaseRESTService.Instance.CheckInstaIdExists(registeredInsta, (exists) => {
+                    isDuplicateRegistration = exists;
+                    if (registerSubmitBtn != null) registerSubmitBtn.SetEnabled(true);
+                    CheckCoinAndProceed();
+                }));
+            }
+            else
+            {
+                CheckCoinAndProceed();
+            }
         }
 
         private void CheckCoinAndProceed()
@@ -992,7 +1003,7 @@ namespace ClawMachine.UI
             HideOverlay(registerOverlay);
             
             // 이벤트 발행 -> Game Flow Manager에서 수신하여 타이머 시작 및 게임 가능 모드 전환
-            OnPlayerRegistered?.Invoke(registeredName, registeredInsta, registeredBio, registeredGender);
+            OnPlayerRegistered?.Invoke(registeredName, registeredInsta, registeredBio, registeredGender, isDuplicateRegistration);
         }
 
         private void ResetToRegistration()

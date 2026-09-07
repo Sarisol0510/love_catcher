@@ -4,6 +4,7 @@ using System;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
+using ClawMachine.Utils;
 
 namespace ClawMachine.Mechanics
 {
@@ -56,7 +57,17 @@ namespace ClawMachine.Mechanics
 
         private void LoadConfig()
         {
-            if (string.IsNullOrEmpty(firebaseProjectId))
+            // 1순위: .env 환경변수 파일 또는 시스템 환경변수에서 로드
+            string envProjectId = EnvLoader.Get("FIREBASE_PROJECT_ID");
+            if (!string.IsNullOrEmpty(envProjectId) && envProjectId != "your-firebase-project-id")
+            {
+                firebaseProjectId = envProjectId;
+                Debug.Log($"[Firebase] ✅ .env 환경설정에서 Project ID 로드 완료: {firebaseProjectId}");
+                return;
+            }
+
+            // 2순위: Resources/FirebaseConfig.json에서 로드
+            if (string.IsNullOrEmpty(firebaseProjectId) || firebaseProjectId == "your-firebase-project-id")
             {
                 TextAsset configAsset = Resources.Load<TextAsset>("FirebaseConfig");
                 if (configAsset != null)
@@ -64,7 +75,7 @@ namespace ClawMachine.Mechanics
                     try
                     {
                         FirebaseConfig config = JsonUtility.FromJson<FirebaseConfig>(configAsset.text);
-                        if (config != null && !string.IsNullOrEmpty(config.firebaseProjectId))
+                        if (config != null && !string.IsNullOrEmpty(config.firebaseProjectId) && config.firebaseProjectId != "your-firebase-project-id")
                         {
                             firebaseProjectId = config.firebaseProjectId;
                             Debug.Log($"[Firebase] Resources/FirebaseConfig에서 Project ID 로드 성공: {firebaseProjectId}");

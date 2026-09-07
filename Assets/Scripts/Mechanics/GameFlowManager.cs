@@ -56,19 +56,19 @@ namespace ClawMachine.Mechanics
         [Tooltip("남성 참가자 목록 (여성이 플레이할 때 매칭 대상)")]
         public List<MatchedProfile> maleProfiles = new List<MatchedProfile>
         {
-            new MatchedProfile("송인서", "남", "@i.ns..u", "원신 좋아하시는 분 찾습니다^^"),
-            new MatchedProfile("윤서준", "남", "@seojun_yoon", "코딩과 독서를 사랑하는 공대생!"),
-            new MatchedProfile("이지훈", "남", "@jihoon_lee", "운동 좋아해요! 같이 주말에 등산하실 분?"),
-            new MatchedProfile("김민우", "남", "@minwoo_k", "카페 투어랑 맛집 탐방이 취미입니다.")
+            new MatchedProfile("김민수", "남", "@sample_boy1", "원신 좋아하시는 분 찾습니다^^"),
+            new MatchedProfile("윤서준", "남", "@sample_boy2", "코딩과 독서를 사랑하는 공대생!"),
+            new MatchedProfile("이지훈", "남", "@sample_boy3", "운동 좋아해요! 같이 주말에 등산하실 분?"),
+            new MatchedProfile("박준혁", "남", "@sample_boy4", "카페 투어랑 맛집 탐방이 취미입니다.")
         };
 
         [Tooltip("여성 참가자 목록 (남성이 플레이할 때 매칭 대상)")]
         public List<MatchedProfile> femaleProfiles = new List<MatchedProfile>
         {
-            new MatchedProfile("조연우", "여", "@yeonwoo_cho", "02.청춘은.어떠신지.?"),
-            new MatchedProfile("김유진", "여", "@yujin_kim", "필라테스 강사입니다! 친하게 지내요~"),
-            new MatchedProfile("박서현", "여", "@seohyun_p", "보드게임이랑 애니메이션 좋아해요!"),
-            new MatchedProfile("최수아", "여", "@sua_choi", "음악 페스티벌 같이 가실 분 구해요 🎵")
+            new MatchedProfile("이수진", "여", "@sample_girl1", "청춘을 함께 즐길 분 찾아요!"),
+            new MatchedProfile("김유진", "여", "@sample_girl2", "필라테스 강사입니다! 친하게 지내요~"),
+            new MatchedProfile("박서현", "여", "@sample_girl3", "보드게임이랑 애니메이션 좋아해요!"),
+            new MatchedProfile("최수아", "여", "@sample_girl4", "음악 페스티벌 같이 가실 분 구해요 🎵")
         };
 
         [Header("Game Statistics")]

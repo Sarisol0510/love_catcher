@@ -83,7 +83,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:Label text="입금 후 운영진에게 보여주세요." class="stat-value-highlight" style="margin-top: 10px; margin-bottom: 4px; -unity-text-align: middle-center; font-size: 16px; color: rgb(255, 215, 0);" />
-                <ui:Label text="🏦 토스뱅크 1002-5198-3143 권신혁 🏦" style="margin-bottom: 8px; -unity-text-align: middle-center; font-size: 14px; color: rgb(0, 238, 255); font-weight: bold;" />
+                <ui:Label name="RegisterAccountInfoText" text="🏦 토스뱅크 0000-0000-0000 홍길동 🏦" style="margin-bottom: 8px; -unity-text-align: middle-center; font-size: 14px; color: rgb(0, 238, 255); font-weight: bold;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="SuccessOverlay" class="overlay-screen" style="display: none; flex-direction: row; justify-content: center; align-items: center;">
@@ -134,7 +134,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:Label text="입금 후 운영진에게 보여주세요." class="stat-value-highlight" style="margin-top: 10px; margin-bottom: 4px; -unity-text-align: middle-center; font-size: 16px; color: rgb(255, 215, 0);" />
-                <ui:Label text="🏦 토스뱅크 1002-5198-3143 권신혁 🏦" style="margin-bottom: 8px; -unity-text-align: middle-center; font-size: 14px; color: rgb(0, 238, 255); font-weight: bold;" />
+                <ui:Label name="FailAccountInfoText" text="🏦 토스뱅크 0000-0000-0000 홍길동 🏦" style="margin-bottom: 8px; -unity-text-align: middle-center; font-size: 14px; color: rgb(0, 238, 255); font-weight: bold;" />
                 <ui:Button name="BtnCoinStart" text="🎮 도전 시작하기 (1코인 사용)" class="btn-primary" style="margin-top: 8px; width: 100%; height: 50px; font-size: 18px; display: none;" />
                 <ui:Button name="FailRetryCloseBtn" text="뒤로 가기" class="btn-secondary" style="margin-top: 8px; width: 100%; height: 46px;" />
             </ui:VisualElement>

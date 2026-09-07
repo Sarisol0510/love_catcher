@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using System;
 using System.Collections;
 using ClawMachine.Input;
+using ClawMachine.Utils;
 
 namespace ClawMachine.UI
 {
@@ -45,6 +46,8 @@ namespace ClawMachine.UI
         private Label registerMaleCountText;
         private Label registerFemaleCountText;
         private Label registerWarningText;
+        private Label registerAccountInfoText;
+        private Label failAccountInfoText;
 
         // Success Card Fields
         private Label matchedName;
@@ -261,6 +264,16 @@ namespace ClawMachine.UI
             registerMaleCountText = root.Q<Label>("RegisterMaleCountText");
             registerFemaleCountText = root.Q<Label>("RegisterFemaleCountText");
             registerWarningText = root.Q<Label>("RegisterWarningText");
+            registerAccountInfoText = root.Q<Label>("RegisterAccountInfoText");
+            failAccountInfoText = root.Q<Label>("FailAccountInfoText");
+
+            // .env 환경변수에서 부스 결제 계좌 안내 문구 로드 및 UI 적용
+            string bankAccount = EnvLoader.Get("BANK_ACCOUNT_INFO");
+            if (!string.IsNullOrEmpty(bankAccount))
+            {
+                if (registerAccountInfoText != null) registerAccountInfoText.text = bankAccount;
+                if (failAccountInfoText != null) failAccountInfoText.text = bankAccount;
+            }
 
             // Success Panel Fields
             matchedName = root.Q<Label>("MatchedName");
@@ -360,8 +373,8 @@ namespace ClawMachine.UI
             };
 
             // Register Event Listeners
-            genderBtnMale.clicked += () => { playBtnSound(); SelectGender("남성"); };
-            genderBtnFemale.clicked += () => { playBtnSound(); SelectGender("여성"); };
+            genderBtnMale.clicked += () => { playBtnSound(); SelectGender("남"); };
+            genderBtnFemale.clicked += () => { playBtnSound(); SelectGender("여"); };
             registerSubmitBtn.clicked += () => { playBtnSound(); SubmitRegistration(); };
             
             if (registerSubmitBtn != null && registerSubmitBtn.parent != null)

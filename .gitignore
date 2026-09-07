@@ -73,3 +73,23 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# Large Archives & Compressed Builds
+*.zip
+*.7z
+*.rar
+*.tar.gz
+
+# Crash & Auto-Recovery Assets
+/[Aa]ssets/_Recovery/
+/[Aa]ssets/_Recovery.meta
+
+# OS Specific
+.DS_Store
+Thumbs.db
+
